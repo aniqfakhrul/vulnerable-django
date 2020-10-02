@@ -7,23 +7,23 @@
     <form method='post' action="{% url 'articles:share' %}" enctype="multipart/form-data">
         {% csrf_token %}
         <div class="form-group ">
-            <label for="exampleFormControlInput1">Name</label>
-            <input type="email" class="form-control border-thin border-primary" id="exampleFormControlInput1" placeholder="Name">
+            <label for="exampleFormControlInput1">Title</label><br>
+            <!-- <input type="email" class="form-control border-thin border-primary" id="exampleFormControlInput1" placeholder="Name"> -->
             {{ form.title }}
         </div>
         <div class="form-group">
-            <label for="exampleFormControlInput1">Url</label>
-            <input type="email" class="form-control border-thin border-primary" id="exampleFormControlInput1" placeholder="Url">
+            <label for="exampleFormControlInput1">Body</label><br>
+            <!-- <input type="email" class="form-control border-thin border-primary" id="exampleFormControlInput1" placeholder="Url"> -->
             {{ form.body }}
         </div>
         <div class="form-group">
-            <label for="exampleFormControlInput1">User Flag</label>
-            <input type="email" class="form-control border-thin border-primary" id="exampleFormControlInput1" placeholder="User Flag">
+            <label for="exampleFormControlInput1">Slug</label><br>
+            <!-- <input type="email" class="form-control border-thin border-primary" id="exampleFormControlInput1" placeholder="User Flag"> -->
             {{ form.slug }}
         </div>
         <div class="form-group">
-            <label for="exampleFormControlInput1">Root Flag</label>
-            <input type="email" class="form-control border-thin border-primary" id="exampleFormControlInput1" placeholder="Root Flag">
+            <label for="exampleFormControlInput1">Thumbnail</label><br>
+            <!-- <input type="email" class="form-control border-thin border-primary" id="exampleFormControlInput1" placeholder="Root Flag"> -->
             {{ form.thumb }}
         </div>
         <button type="submit" class="btn btn-primary">Share</button>

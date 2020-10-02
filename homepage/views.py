@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from .models import Article
+from django.db.models import Q
 from django.contrib.auth.decorators import login_required
 from . import forms
 import base64
@@ -23,6 +24,9 @@ def article_details(request, slug):
     }
     return render(request, 'homepage/post.html', context)
 
+def about(request):
+    return render(request, 'homepage/about.html')
+
 @login_required(login_url="accounts/login")
 def share_article(request):
     if request.method == 'POST':
@@ -42,22 +46,23 @@ def share_article(request):
 
 def search_articles(request):
     if request.method == 'POST':
-        # cookie = request.cookies.get("searched")
-        # cookie = pickle.loads(base64.b64decode(cookie))
         try:
             cookie = request.COOKIES.get('search_cookie')
-            cookie = pickle.loads(base64.b64decode(cookie))  
+            cookie = pickle.loads(base64.b64decode(cookie))
         except:
             pass  
-        try:
-            query = request.POST.get('query')
-        except:
-            pass
+        query = request.POST.get('query')
+        encoded_cookie = base64.b64encode(pickle.dumps(query)) #dumps pickle
+        encoded_cookie = encoded_cookie.decode("utf-8")
+        if query:   
+            results = Article.objects.filter(Q(title__icontains=query)|Q(body__icontains=query))
+        else:
+            results = Article.objects.all()
     context = {
-        'query':query,
+        'results':results,
     }
     html = render(request, 'homepage/search.html', context)
-    html.set_cookie('search_cookie', query)
+    html.set_cookie('search_cookie', encoded_cookie)
     return html
 
     

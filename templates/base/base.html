@@ -40,7 +40,7 @@
             <a class="nav-link" href="{% url 'articles:home' %}">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{% url 'articles:home' %}">About</a>
+            <a class="nav-link" href="{% url 'articles:about' %}">About</a>
           </li>
           {% if user.is_authenticated %}
           <li class="nav-item">
@@ -62,11 +62,11 @@
             </form>
           </div>
           {% else %}
-          <li class="nav-item">
-            <a class="btn btn-outline-success my-2 my-sm-0" href="{% url 'accounts:login' %}">Login</a>
+          <li class="md-form mt-0 ml-2">
+            <a class="btn button2 btn-outline-success my-2 my-sm-0" href="{% url 'accounts:login' %}">Login</a>
           </li>
-          <li class="nav-item">
-            <a class="btn btn-outline-success my-2 my-sm-0" href="{% url 'accounts:signup' %}">Signup</a>
+          <li class="md-form mt-0 ml-2">
+            <a class="btn btn-success my-2 my-sm-0" href="{% url 'accounts:signup' %}">Signup</a>
           </li>
           {% endif %}
         </ul>
