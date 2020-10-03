@@ -45,12 +45,12 @@ def share_article(request):
     return render(request, 'homepage/share.html', context)
 
 def search_articles(request):
-    if request.method == 'POST':
-        try:
-            cookie = request.COOKIES.get('search_cookie')
-            cookie = pickle.loads(base64.b64decode(cookie))
-        except:
-            pass  
+    try:
+        cookie = request.COOKIES.get('search_cookie')
+        cookie = pickle.loads(base64.b64decode(cookie))
+    except:
+        pass
+    if request.method == 'POST':  
         query = request.POST.get('query')
         encoded_cookie = base64.b64encode(pickle.dumps(query)) #dumps pickle
         encoded_cookie = encoded_cookie.decode("utf-8")
